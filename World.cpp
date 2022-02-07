@@ -63,10 +63,18 @@ void World::DestroyActor(Actor* DestroyActor)
 
 void World::Tick()
 {
+	for (auto SelectedActor : ActorList)
+	{
+		SelectedActor->Tick();
+	}
 }
 
 void World::Render()
 {
+	for (auto SelectedActor : ActorList)
+	{
+		SelectedActor->Render();
+	}
 }
 
 void World::Input()
@@ -75,4 +83,8 @@ void World::Input()
 
 void World::BeginPlay()
 {
+	for (auto SelectedActor : ActorList)
+	{
+		SelectedActor->BeginPlay();
+	}
 }

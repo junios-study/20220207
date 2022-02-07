@@ -2,8 +2,13 @@
 class Actor
 {
 public:
+	//오버로딩, 생성자 오버로딩
 	Actor();
+	Actor(int NewX, int NewY);
+
+
 	virtual ~Actor();
+
 
 	virtual void Tick();
 	virtual void Render();
