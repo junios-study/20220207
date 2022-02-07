@@ -94,13 +94,13 @@ using namespace std;
 //	PlayEngine->SpawnActor(new Wall(8, 9));
 //	PlayEngine->SpawnActor(new Wall(9, 9));
 //
-//	PlayEngine->SpawnActor(new Floor(1, 1));
+////	PlayEngine->SpawnActor(new Floor(1, 1));
 //
 //	PlayEngine->SpawnActor(new Player(1, 1));
 //	PlayEngine->SpawnActor(new Goal(8, 8));
 //
 //
-//	PlayEngine->Run();
+//	PlayEngine->SaveLevel("Level02.map");
 //
 //	delete PlayEngine;
 //	PlayEngine = nullptr;
@@ -108,15 +108,22 @@ using namespace std;
 //	return 0;
 //}
 
+//ÂüÁ¶ÀÚ, Reference
+void SwapInt(int& A, int& B)
+{
+	int Temp = A;
+	A = B;
+	B = Temp;
+}
 
 int main()
 {
 	MyEngine* PlayEngine = new MyEngine();
 
-	PlayEngine->LoadLevel("Level01.map");
+	PlayEngine->LoadLevel("Level02.map");
+	PlayEngine->SaveLevel("Level03.map");
 
-
-	PlayEngine->Run();
+//	PlayEngine->Run();
 
 	delete PlayEngine;
 	PlayEngine = nullptr;

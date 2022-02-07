@@ -4,6 +4,7 @@
 #include "Wall.h"
 #include "Player.h"
 #include "Goal.h"
+#include <iostream>
 
 MyEngine::MyEngine()
 {
@@ -45,9 +46,9 @@ void MyEngine::DestroyActor(Actor* DestroyActor)
 	CurrentWorld->DestroyActor(DestroyActor);
 }
 
-void MyEngine::LoadLevel(std::string MapName)
+void MyEngine::LoadLevel(std::string LoadMapName)
 {
-	std::ifstream MapFile(MapName);
+	std::ifstream MapFile(LoadMapName);
 	int X = 0;
 	int Y = 0;
 
@@ -73,6 +74,64 @@ void MyEngine::LoadLevel(std::string MapName)
 
 		X++;
 	}
+
+	MapFile.close();
+}
+
+void MyEngine::SaveLevel(std::string SaveMapName)
+{
+	std::ofstream WriteFile(SaveMapName);
+
+	int MaxX = -99999;
+	int MaxY = -99999;
+
+	std::vector<Actor*> ActorList = CurrentWorld->GetActorList();
+
+
+	//Á¦ÀÏ Å« ÁÂÇ¥°ª ÀúÀå ÇÏ±â
+	for (auto SelectedActor : ActorList)
+	{
+		if (MaxX <= SelectedActor->GetX())
+		{
+			MaxX = SelectedActor->GetX();
+		}
+
+		if (MaxY <= SelectedActor->GetY())
+		{
+			MaxY = SelectedActor->GetY();
+		}
+	}
+
+	bool bIsWrite = false;
+
+	for (int Y = 0; Y <= MaxY; ++Y)
+	{
+		for (int X = 0; X <= MaxX; ++X)
+		{
+			//°´Ã¼ ÀúÀå
+			for (auto SelectedActor : ActorList)
+			{
+				if (SelectedActor->GetX() == X && SelectedActor->GetY() == Y)
+				{
+					WriteFile.put(SelectedActor->GetShape());
+					bIsWrite = true;
+					break;
+				}
+			}
+
+			//ºóÄ­ ÀúÀå
+			if (bIsWrite == false)
+			{
+				WriteFile.put(' ');
+			}
+
+			bIsWrite = false;
+		}
+		//ÁÙ ¹Ù²Þ
+		WriteFile.put('\n');
+	}
+
+	WriteFile.close();
 }
 
 void MyEngine::BeginPlay()
