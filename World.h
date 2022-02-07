@@ -15,6 +15,8 @@ public:
 	void Input();
 	void BeginPlay();
 
+	std::vector<class Actor*> GetActorList() { return ActorList; }
+
 
 protected:
 	std::vector<class Actor*> ActorList;
