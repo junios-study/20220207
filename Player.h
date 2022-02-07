@@ -1,5 +1,7 @@
 #pragma once
-class Player
+#include "Actor.h"
+
+class Player : public Actor
 {
 };
 

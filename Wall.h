@@ -1,5 +1,7 @@
 #pragma once
-class Wall
+#include "Actor.h"
+
+class Wall : public Actor
 {
 };
 
