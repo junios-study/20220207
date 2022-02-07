@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 
 class World;
 
@@ -14,6 +15,8 @@ public:
 
 	void SpawnActor(class Actor* NewActor);
 	void DestroyActor(class Actor* DestroyActor);
+
+	void LoadLevel(std::string MapName);
 
 protected:
 	void BeginPlay();
