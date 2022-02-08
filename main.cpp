@@ -95,7 +95,26 @@ int SDL_main(int argc, char* argv[])
 			OldY = Y2;
 		}
 
+		//
+		SDL_SetRenderDrawColor(MyRenderer, 128, 128, 128, 0);
+		//PositionX = 600;
+		//PositionY = 400;
+		Radius = 50;
+		for (int Angle = 0; Angle <= 180; ++Angle)
+		{
+			int X1 = sin(3.14f / 180.0f * Angle) * Radius;
+			int Y1 = cos(3.14f / 180.0f * Angle) * Radius;
+			int X2 = sin(3.14f / 180.0f * (360 - Angle)) * Radius;
+			int Y2 = cos(3.14f / 180.0f * (360 - Angle)) * Radius;
 
+			SDL_RenderDrawLine(MyRenderer, X1 + PositionX,
+				Y1 + PositionY,
+				X2 + PositionX,
+				Y2 + PositionY
+			);
+		}
+
+		
 
 		//GPU야 그려라
 		//Render
