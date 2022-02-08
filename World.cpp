@@ -69,11 +69,11 @@ void World::Tick()
 	}
 }
 
-void World::Render()
+void World::Render(SDL_Renderer* MyRenderer)
 {
 	for (auto SelectedActor : ActorList)
 	{
-		SelectedActor->Render();
+		SelectedActor->Render(MyRenderer);
 	}
 }
 

@@ -38,8 +38,8 @@ void MyEngine::Init(std::string Title, int Width, int Height)
 		std::cout << "SDL_Init Error :" << SDL_GetError() << std::endl;
 	}
 
-	SDL_Window* MyWindow = SDL_CreateWindow(Title.c_str(), 100, 100, Width, Height, SDL_WINDOW_OPENGL);
-	SDL_Renderer* MyRenderer = SDL_CreateRenderer(MyWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_TARGETTEXTURE);
+	MyWindow = SDL_CreateWindow(Title.c_str(), 100, 100, Width, Height, SDL_WINDOW_OPENGL);
+	MyRenderer = SDL_CreateRenderer(MyWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_TARGETTEXTURE);
 
 	if (MyRenderer == nullptr)
 	{
@@ -197,10 +197,13 @@ void MyEngine::Tick()
 
 void MyEngine::Render()
 {
+	//화면지우기
+	SDL_SetRenderDrawColor(MyRenderer, 0xff, 0xff, 0xff, 0xff);
+	SDL_RenderClear(MyRenderer);
 	//그릴 리스트 준비
 //PreRender(그릴 준비, 그릴 물체 배치)
 
-	CurrentWorld->Render();
+	CurrentWorld->Render(MyRenderer);
 
 	//GPU야 그려라
 //Render
