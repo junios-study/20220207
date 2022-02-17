@@ -10,6 +10,8 @@ Wall::Wall()
 	Color.g = 0x3a;
 	Color.b = 0x30;
 	Color.a = 0xff;
+	ZOrder = 1;
+	bIsBlock = true;
 }
 
 Wall::Wall(int NewX, int NewY)
@@ -20,6 +22,8 @@ Wall::Wall(int NewX, int NewY)
 	Color.g = 0x3a;
 	Color.b = 0x30;
 	Color.a = 0xff;
+	ZOrder = 1;
+	bIsBlock = true;
 }
 
 Wall::~Wall()

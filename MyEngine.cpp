@@ -4,6 +4,7 @@
 #include "Wall.h"
 #include "Player.h"
 #include "Goal.h"
+#include "Floor.h"
 #include <iostream>
 
 //MyEngine::MyEngine()
@@ -15,6 +16,8 @@
 SDL_Window* MyEngine::MyWindow = nullptr;
 SDL_Renderer* MyEngine::MyRenderer = nullptr;
 SDL_Event MyEngine::MyEvent;
+std::unique_ptr<World> MyEngine::CurrentWorld;
+
 
 MyEngine::MyEngine(std::string Title, std::string LevelName, int Width, int Height)
 {
@@ -99,14 +102,20 @@ void MyEngine::LoadLevel(std::string LoadMapName)
 			X = 0;
 			Y++;
 			continue;
+		case ' ':
+			SpawnActor(std::make_shared<Floor>(X, Y));
+			break;
 		case '*':
 			SpawnActor(std::make_shared<Wall>(X, Y));
+			SpawnActor(std::make_shared<Floor>(X, Y));
 			break;
 		case 'P':
 			SpawnActor(std::make_shared<Player>(X, Y));
+			SpawnActor(std::make_shared<Floor>(X, Y));
 			break;
 		case 'G':
 			SpawnActor(std::make_shared<Goal>(X, Y));
+			SpawnActor(std::make_shared<Floor>(X, Y));
 			break;
 		}
 

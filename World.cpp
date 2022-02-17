@@ -1,5 +1,6 @@
 #include "World.h"
 #include "Actor.h"
+#include <algorithm>
 
 World::World()
 {
@@ -35,6 +36,8 @@ World::~World()
 void World::SpawnActor(std::shared_ptr<Actor> NewActor)
 {
 	ActorList.push_back(NewActor);
+
+	sort(ActorList.begin(), ActorList.end(), Actor::Compare);
 }
 
 void World::DestroyActor(std::shared_ptr<Actor> DestroyActor)

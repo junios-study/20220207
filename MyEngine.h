@@ -28,6 +28,7 @@ public:
 	inline static SDL_Window* GetWindow() { return MyWindow; }
 	inline static SDL_Renderer* GetRenderer() { return MyRenderer; }
 	inline static SDL_Event& GetEvent() { return MyEvent; }
+	inline static std::unique_ptr<World>& GetWorld() { return CurrentWorld; }
 
 protected:
 	void BeginPlay();
@@ -37,7 +38,7 @@ protected:
 
 protected:
 	bool bIsRunning = true;
-	std::unique_ptr<World> CurrentWorld;
+	static std::unique_ptr<World> CurrentWorld;
 
 	static SDL_Window* MyWindow;
 	static SDL_Renderer* MyRenderer;

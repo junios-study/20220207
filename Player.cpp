@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "MyEngine.h"
+#include "World.h"
 
 Player::Player()
 {
@@ -10,6 +11,8 @@ Player::Player()
 	Color.g = 0x00;
 	Color.b = 0x00;
 	Color.a = 0xff;
+
+	ZOrder = 2;
 }
 
 Player::Player(int NewX, int NewY)
@@ -21,6 +24,8 @@ Player::Player(int NewX, int NewY)
 	Color.g = 0x00;
 	Color.b = 0x00;
 	Color.a = 0xff;
+
+	ZOrder = 2;
 }
 
 Player::~Player()
@@ -34,17 +39,19 @@ void Player::Tick()
 		switch (MyEngine::GetEvent().key.keysym.sym)
 		{
 		case SDLK_LEFT:
-			X--;
+			CanMove(X - 1, Y);
 			break;
 		case SDLK_RIGHT:
-			X++;
+			CanMove(X + 1, Y);
 			break;
 		case SDLK_UP:
-			Y--;
+			CanMove(X, Y - 1);
 			break;
 		case SDLK_DOWN:
-			Y++;
+			CanMove(X, Y + 1);
 			break;
 		}
 	}
 }
+
+

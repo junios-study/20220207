@@ -1,5 +1,6 @@
 #pragma once
 #include "SDL.h"
+#include <iostream>
 
 class Actor
 {
@@ -21,11 +22,30 @@ public:
 	inline virtual int GetX() { return X; }
 	inline virtual int GetY() { return Y; }
 
+	bool operator <(Actor& RHS)
+	{
+		return this->ZOrder < RHS.ZOrder;
+	}
+
+	inline static bool Compare(std::shared_ptr<Actor> LHS, std::shared_ptr<Actor> RHS)
+	{
+		return LHS->ZOrder < RHS->ZOrder;
+	}
+
+	bool CanMove(int FutureX, int FutureY);
+
+	
+
 protected:
 	int X;
 	int Y;
 	char Shape;
 	SDL_Color Color;
 	int TileSize = 30;
+
+	int ZOrder;
+
+public:
+	bool bIsBlock;
 };
 
