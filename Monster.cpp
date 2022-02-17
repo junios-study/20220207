@@ -15,7 +15,7 @@ Monster::Monster()
 	ZOrder = 3;
 
 	ElapseTime = 0;
-	ProcessTime = 1000;
+	ProcessTime = 100;
 }
 
 Monster::Monster(int NewX, int NewY)
