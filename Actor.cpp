@@ -27,7 +27,6 @@ void Actor::Render(SDL_Renderer* MyRenderer)
 	//static ¸â¹ö ÇÔ¼ö
 	//Util::GotoXY(GetX(), GetY());
 	//std::cout << GetShape() << std::endl;
-
 	SDL_SetRenderDrawColor(MyRenderer, Color.r, Color.g, Color.b, Color.a);
 	SDL_Rect Rect = { GetX() * TileSize, GetY() * TileSize, TileSize, TileSize };
 

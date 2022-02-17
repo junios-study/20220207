@@ -25,39 +25,24 @@ World::~World()
 	//range for
 	for (auto CurrentActor : ActorList)
 	{
-		delete CurrentActor;
+//		delete CurrentActor;
 		CurrentActor = nullptr;
 	}
 
 	ActorList.clear();
 }
 
-void World::SpawnActor(Actor* NewActor)
+void World::SpawnActor(std::shared_ptr<Actor> NewActor)
 {
 	ActorList.push_back(NewActor);
 }
 
-void World::DestroyActor(Actor* DestroyActor)
+void World::DestroyActor(std::shared_ptr<Actor> DestroyActor)
 {
-	//for (auto iter = ActorList.begin(); iter != ActorList.end(); ++iter)
-	//{
-	//	if (*iter == DestroyActor)
-	//	{
-	//		delete *iter;
-	//		*iter = nullptr;
-	//		//important 
-	//		iter = ActorList.erase(iter);
-	//		break;
-	//	}
-	//}
-
-	//auto DestroyIter = find(ActorList.begin(), ActorList.end(), DestroyActor);
-	//ActorList.erase(DestroyIter);
-
 	//자료 구조 Actor리스트에서 관리 리스트에서 삭제
 	ActorList.erase(find(ActorList.begin(), ActorList.end(), DestroyActor));
 	//메모리에서 실제로 삭제
-	delete DestroyActor;
+	//delete DestroyActor;
 	DestroyActor = nullptr;
 }
 

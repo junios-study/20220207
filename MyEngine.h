@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include "SDL.h"
+#include <memory>
 
 class World;
 
@@ -18,8 +19,8 @@ public:
 
 	void Stop();
 
-	void SpawnActor(class Actor* NewActor);
-	void DestroyActor(class Actor* DestroyActor);
+	void SpawnActor(std::shared_ptr<class Actor> NewActor);
+	void DestroyActor(std::shared_ptr<class Actor> DestroyActor);
 
 	void LoadLevel(std::string LoadMapName);
 	void SaveLevel(std::string SaveMapName);
@@ -32,7 +33,7 @@ protected:
 
 protected:
 	bool bIsRunning = true;
-	World* CurrentWorld;
+	std::unique_ptr<World> CurrentWorld;
 
 	SDL_Window* MyWindow;
 	SDL_Renderer* MyRenderer;

@@ -14,7 +14,7 @@
 
 MyEngine::MyEngine(std::string Title, std::string LevelName, int Width, int Height)
 {
-	CurrentWorld = new World();
+	CurrentWorld = std::make_unique<World>();
 	bIsRunning = true;
 
 	LoadLevel(LevelName);
@@ -24,7 +24,7 @@ MyEngine::MyEngine(std::string Title, std::string LevelName, int Width, int Heig
 
 MyEngine::~MyEngine()
 {
-	delete CurrentWorld;
+	//delete CurrentWorld;
 	CurrentWorld = nullptr;
 	bIsRunning = false;
 
@@ -70,12 +70,12 @@ void MyEngine::Stop()
 	bIsRunning = false;
 }
 
-void MyEngine::SpawnActor(Actor* NewActor)
+void MyEngine::SpawnActor(std::shared_ptr<Actor> NewActor)
 {
 	CurrentWorld->SpawnActor(NewActor);
 }
 
-void MyEngine::DestroyActor(Actor* DestroyActor)
+void MyEngine::DestroyActor(std::shared_ptr<Actor> DestroyActor)
 {
 	CurrentWorld->DestroyActor(DestroyActor);
 }
@@ -96,13 +96,13 @@ void MyEngine::LoadLevel(std::string LoadMapName)
 			Y++;
 			continue;
 		case '*':
-			SpawnActor(new Wall(X, Y));
+			SpawnActor(std::make_shared<Wall>(X, Y));
 			break;
 		case 'P':
-			SpawnActor(new Player(X, Y));
+			SpawnActor(std::make_shared<Player>(X, Y));
 			break;
 		case 'G':
-			SpawnActor(new Goal(X, Y));
+			SpawnActor(std::make_shared<Goal>(X, Y));
 			break;
 		}
 
@@ -119,7 +119,8 @@ void MyEngine::SaveLevel(std::string SaveMapName)
 	int MaxX = -99999;
 	int MaxY = -99999;
 
-	std::vector<Actor*> ActorList = CurrentWorld->GetActorList();
+	//std::vector<std::shared_ptr<Actor>> ActorList = CurrentWorld->GetActorList();
+	auto ActorList = CurrentWorld->GetActorList();
 
 
 	//제일 큰 좌표값 저장 하기

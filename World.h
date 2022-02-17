@@ -1,6 +1,9 @@
 #pragma once
 #include <vector>
 #include "SDL.h"
+#include <memory>
+
+class Actor;
 
 class World
 {
@@ -8,18 +11,18 @@ public:
 	World();
 	virtual ~World();
 
-	void SpawnActor(class Actor* NewActor);
-	void DestroyActor(class Actor* DestroyActor);
+	void SpawnActor(std::shared_ptr<Actor> NewActor);
+	void DestroyActor(std::shared_ptr<Actor> DestroyActor);
 
 	void Tick(SDL_Event& MyEvent);
 	void Render(SDL_Renderer* MyRenderer);
 	void BeginPlay();
 
-	const std::vector<class Actor*>& GetActorList() { return ActorList; }
+	const std::vector<std::shared_ptr<Actor>>& GetActorList() { return ActorList; }
 
 
 protected:
-	std::vector<class Actor*> ActorList;
+	std::vector<std::shared_ptr<Actor>> ActorList;
 
 };
 
