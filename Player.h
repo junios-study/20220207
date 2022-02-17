@@ -9,6 +9,6 @@ public:
 	Player(int NewX, int NewY);
 	virtual ~Player();
 
-	virtual void Tick(SDL_Event& MyEvent) override;
+	virtual void Tick() override;
 };
 

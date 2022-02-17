@@ -12,6 +12,10 @@
 //	bIsRunning = true;
 //}
 
+SDL_Window* MyEngine::MyWindow = nullptr;
+SDL_Renderer* MyEngine::MyRenderer = nullptr;
+SDL_Event MyEngine::MyEvent;
+
 MyEngine::MyEngine(std::string Title, std::string LevelName, int Width, int Height)
 {
 	CurrentWorld = std::make_unique<World>();
@@ -193,7 +197,7 @@ void MyEngine::Tick()
 	}
 
 
-	CurrentWorld->Tick(MyEvent);
+	CurrentWorld->Tick();
 }
 
 void MyEngine::Render()
@@ -204,7 +208,7 @@ void MyEngine::Render()
 	//그릴 리스트 준비
 //PreRender(그릴 준비, 그릴 물체 배치)
 
-	CurrentWorld->Render(MyRenderer);
+	CurrentWorld->Render();
 
 	//GPU야 그려라
 //Render

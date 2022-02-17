@@ -25,6 +25,10 @@ public:
 	void LoadLevel(std::string LoadMapName);
 	void SaveLevel(std::string SaveMapName);
 
+	inline static SDL_Window* GetWindow() { return MyWindow; }
+	inline static SDL_Renderer* GetRenderer() { return MyRenderer; }
+	inline static SDL_Event& GetEvent() { return MyEvent; }
+
 protected:
 	void BeginPlay();
 	void Tick();
@@ -35,8 +39,8 @@ protected:
 	bool bIsRunning = true;
 	std::unique_ptr<World> CurrentWorld;
 
-	SDL_Window* MyWindow;
-	SDL_Renderer* MyRenderer;
-	SDL_Event MyEvent;
+	static SDL_Window* MyWindow;
+	static SDL_Renderer* MyRenderer;
+	static SDL_Event MyEvent;
 };
 

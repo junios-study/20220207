@@ -14,8 +14,8 @@ public:
 	void SpawnActor(std::shared_ptr<Actor> NewActor);
 	void DestroyActor(std::shared_ptr<Actor> DestroyActor);
 
-	void Tick(SDL_Event& MyEvent);
-	void Render(SDL_Renderer* MyRenderer);
+	void Tick();
+	void Render();
 	void BeginPlay();
 
 	const std::vector<std::shared_ptr<Actor>>& GetActorList() { return ActorList; }

@@ -46,19 +46,19 @@ void World::DestroyActor(std::shared_ptr<Actor> DestroyActor)
 	DestroyActor = nullptr;
 }
 
-void World::Tick(SDL_Event& MyEvent)
+void World::Tick()
 {
 	for (auto SelectedActor : ActorList)
 	{
-		SelectedActor->Tick(MyEvent);
+		SelectedActor->Tick();
 	}
 }
 
-void World::Render(SDL_Renderer* MyRenderer)
+void World::Render()
 {
 	for (auto SelectedActor : ActorList)
 	{
-		SelectedActor->Render(MyRenderer);
+		SelectedActor->Render();
 	}
 }
 

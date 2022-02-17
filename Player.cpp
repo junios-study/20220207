@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "MyEngine.h"
 
 Player::Player()
 {
@@ -26,11 +27,11 @@ Player::~Player()
 {
 }
 
-void Player::Tick(SDL_Event& MyEvent)
+void Player::Tick()
 {
-	if (MyEvent.type == SDL_KEYDOWN)
+	if (MyEngine::GetEvent().type == SDL_KEYDOWN)
 	{
-		switch (MyEvent.key.keysym.sym)
+		switch (MyEngine::GetEvent().key.keysym.sym)
 		{
 		case SDLK_LEFT:
 			X--;
