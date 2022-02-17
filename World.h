@@ -20,9 +20,12 @@ public:
 
 	const std::vector<std::shared_ptr<Actor>>& GetActorList() { return ActorList; }
 
+	Uint64 GetWorldDeltaSeconds() { return DeltaSeconds; };
 
 protected:
 	std::vector<std::shared_ptr<Actor>> ActorList;
 
+	Uint64 LastTick;
+	Uint64 DeltaSeconds;
 };
 
