@@ -4,7 +4,6 @@
 #include "SDL.h"
 #include <memory>
 #include <vector>
-#include "SDL_ttf.h"
 
 #pragma comment(lib, "SDL2main.lib")
 #pragma comment(lib, "SDL2.lib")
