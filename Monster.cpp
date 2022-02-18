@@ -64,6 +64,9 @@ void Monster::Tick()
 	//isGameOver
 	for (auto Object : MyEngine::GetWorld()->GetActorList())
 	{
+		//STL C++
+		//Player* CheckPlayer = dynamic_cast<Player>(Object);
+		//UE
 		//Player* CheckPlayer = Cast<Player>(Object);
 		std::shared_ptr<Player> CheckPlayer = std::dynamic_pointer_cast<Player>(Object);
 

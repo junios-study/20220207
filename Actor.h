@@ -46,7 +46,7 @@ protected:
 	char Shape;
 	SDL_Color Color;
 	SDL_Color ColorKey;
-	int TileSize = 30;
+	int TileSize = 64;
 
 	int ZOrder;
 

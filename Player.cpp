@@ -1,6 +1,7 @@
 #include "Player.h"
 #include "MyEngine.h"
 #include "World.h"
+#include "Goal.h"
 
 Player::Player()
 {
@@ -58,19 +59,31 @@ void Player::Tick()
 		switch (MyEngine::GetEvent().key.keysym.sym)
 		{
 		case SDLK_LEFT:
-			CanMove(X - 1, Y);
+			if (CanMove(X - 1, Y))
+			{
+				CheckGoal();
+			}
 			SpriteDirection = 0;
 			break;
 		case SDLK_RIGHT:
-			CanMove(X + 1, Y);
+			if (CanMove(X + 1, Y))
+			{
+				CheckGoal();
+			}
 			SpriteDirection = 1;
 			break;
 		case SDLK_UP:
-			CanMove(X, Y - 1);
+			if (CanMove(X, Y - 1))
+			{
+				CheckGoal();
+			}
 			SpriteDirection = 2;
 			break;
 		case SDLK_DOWN:
-			CanMove(X, Y + 1);
+			if (CanMove(X, Y + 1))
+			{
+				CheckGoal();
+			}
 			SpriteDirection = 3;
 			break;
 		}
@@ -89,5 +102,22 @@ void Player::Render()
 	SDL_Rect DestRect = { GetX() * TileSize, GetY() * TileSize, TileSize, TileSize };
 
 	SDL_RenderCopy(MyEngine::GetRenderer(), Texture, &SrcRect, &DestRect);
+}
+
+void Player::CheckGoal()
+{
+	for (auto Object : MyEngine::GetWorld()->GetActorList())
+	{
+		std::shared_ptr<Goal> CheckGoal = std::dynamic_pointer_cast<Goal>(Object);
+
+		if (CheckGoal)
+		{
+			if (Object->GetX() == X && Object->GetY() == Y)
+			{
+				MyEngine::GetEngine()->Stop();
+				break;
+			}
+		}
+	}
 }
 
