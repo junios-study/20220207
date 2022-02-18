@@ -2,6 +2,7 @@
 #include "MyEngine.h"
 #include "World.h"
 #include "Player.h"
+#include "Text.h"
 #include <memory>
 
 Monster::Monster()
@@ -74,7 +75,8 @@ void Monster::Tick()
 		{
 			if (Object->GetX() == X && Object->GetY() == Y)
 			{
-				MyEngine::GetEngine()->Stop();
+				//MyEngine::GetEngine()->Stop();
+				MyEngine::GetEngine()->SpawnActor(std::make_shared<Text>(100, 200, "You Died!", 100));
 				break;
 			}
 		}

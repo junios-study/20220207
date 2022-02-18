@@ -136,8 +136,6 @@ void MyEngine::LoadLevel(std::string LoadMapName)
 		X++;
 	}
 
-	SpawnActor(std::make_shared<Text>(100, 100, "Hello World"));
-
 	MapFile.close();
 }
 
