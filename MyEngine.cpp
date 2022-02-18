@@ -111,7 +111,7 @@ void MyEngine::LoadLevel(std::string LoadMapName)
 			SpawnActor(std::make_shared<Floor>(X, Y, "data/floor.bmp"));
 			break;
 		case 'P':
-			SpawnActor(std::make_shared<Player>(X, Y, "data/floor.bmp"));
+			SpawnActor(std::make_shared<Player>(X, Y, "data/test.bmp"));
 			SpawnActor(std::make_shared<Floor>(X, Y, "data/floor.bmp"));
 			break;
 		case 'G':

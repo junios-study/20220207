@@ -7,7 +7,7 @@ Floor::Floor()
 
 Floor::Floor(int NewX, int NewY, std::string ImageName)
 {
-	Init(NewX, NewX);
+	Init(NewX, NewY);
 	LoadBMP(ImageName);
 }
 
