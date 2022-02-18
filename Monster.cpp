@@ -76,7 +76,7 @@ void Monster::Tick()
 			if (Object->GetX() == X && Object->GetY() == Y)
 			{
 				//MyEngine::GetEngine()->Stop();
-				MyEngine::GetEngine()->SpawnActor(std::make_shared<Text>(100, 200, "You Died!", 100));
+				GEngine->SpawnActor(std::make_shared<Text>(100, 200, "You Died!", 100));
 				break;
 			}
 		}

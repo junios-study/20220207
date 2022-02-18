@@ -50,4 +50,6 @@ protected:
 };
 
 
+#define GEngine MyEngine::GetEngine()
+
 
