@@ -2,6 +2,7 @@
 #include "MyEngine.h"
 #include "World.h"
 #include "Goal.h"
+#include "TextComplete.h"
 
 Player::Player()
 {
@@ -114,7 +115,7 @@ void Player::CheckGoal()
 		{
 			if (Object->GetX() == X && Object->GetY() == Y)
 			{
-				MyEngine::GetEngine()->Stop();
+				GEngine->SpawnActor(std::make_shared<TextComplete>(100, 200, "Complete", 100, 3000));
 				break;
 			}
 		}
