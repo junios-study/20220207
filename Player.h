@@ -9,6 +9,8 @@ public:
 	Player(int NewX, int NewY, std::string ImageName);
 	virtual ~Player();
 
+	virtual void Init(int NewX, int NewY) override;
+
 	virtual void Tick() override;
 
 	virtual void Render() override;

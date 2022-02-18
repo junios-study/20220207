@@ -4,21 +4,22 @@
 
 Player::Player()
 {
-	X = 0;
-	Y = 0;
-	Shape = 'P';
-	Color.r = 0xff;
-	Color.g = 0x00;
-	Color.b = 0x00;
-	Color.a = 0xff;
-
-	ZOrder = 2;
+	Init(0, 0);	
 }
 
 Player::Player(int NewX, int NewY, std::string ImageName)
 {
-	X = NewX;
-	Y = NewY;
+	Init(NewX, NewY);
+	LoadBMP(ImageName);
+}
+
+Player::~Player()
+{
+}
+
+void Player::Init(int NewX, int NewY)
+{
+	Actor::Init(NewX, NewY);
 	Shape = 'P';
 	Color.r = 0xff;
 	Color.g = 0x00;
@@ -29,11 +30,6 @@ Player::Player(int NewX, int NewY, std::string ImageName)
 
 	Surface = nullptr;
 	Texture = nullptr;
-	LoadBMP(ImageName);
-}
-
-Player::~Player()
-{
 }
 
 void Player::Tick()
