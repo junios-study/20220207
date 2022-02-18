@@ -14,10 +14,12 @@ public:
 
 	virtual ~Actor();
 
-	virtual void Tick();
+	//순수 가상함수, 자식 클래스에서 무조건 재정의 해야 됨
+	//인터페이스를 강제 하기 위해서 사용을 합니다.
+	virtual void Tick() = 0; 
 	virtual void Render();
 	virtual void BeginPlay();
-
+	
 	inline virtual void SetActorLocation(int NewX, int NewY);
 	inline virtual void SetShape(char NewShape);
 	inline virtual char GetShape() { return Shape; }
@@ -36,15 +38,14 @@ public:
 
 	bool CanMove(int FutureX, int FutureY);
 
-	
 	void LoadBMP(std::string ImageName);
-
 
 protected:
 	int X;
 	int Y;
 	char Shape;
 	SDL_Color Color;
+	SDL_Color ColorKey;
 	int TileSize = 30;
 
 	int ZOrder;

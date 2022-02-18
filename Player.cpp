@@ -30,25 +30,48 @@ void Player::Init(int NewX, int NewY)
 
 	Surface = nullptr;
 	Texture = nullptr;
+
+	ColorKey.r = 255;
+	ColorKey.g = 0;
+	ColorKey.b = 255;
+
+	ElapseTime = 0;
+	ProcessTime = 500;
+
+	SpriteIndex = 0;
+	SpriteDirection = 0;
 }
 
 void Player::Tick()
 {
+	ElapseTime += MyEngine::GetWorld()->GetWorldDeltaSeconds();
+
+	if (ElapseTime >= ProcessTime)
+	{
+		SpriteIndex++;
+		SpriteIndex = SpriteIndex % 5;
+		ElapseTime = 0;
+	}
+
 	if (MyEngine::GetEvent().type == SDL_KEYDOWN)
 	{
 		switch (MyEngine::GetEvent().key.keysym.sym)
 		{
 		case SDLK_LEFT:
 			CanMove(X - 1, Y);
+			SpriteDirection = 0;
 			break;
 		case SDLK_RIGHT:
 			CanMove(X + 1, Y);
+			SpriteDirection = 1;
 			break;
 		case SDLK_UP:
 			CanMove(X, Y - 1);
+			SpriteDirection = 2;
 			break;
 		case SDLK_DOWN:
 			CanMove(X, Y + 1);
+			SpriteDirection = 3;
 			break;
 		}
 	}
@@ -56,6 +79,15 @@ void Player::Tick()
 
 void Player::Render()
 {
-	Actor::Render();
+	int SpriteWidth = Surface->w / 5;
+	int SpriteHeight = Surface->h / 5;
+	int SpriteIndexX = SpriteIndex;
+	int SpriteIndexY = SpriteDirection;
+	int StartX = SpriteWidth * SpriteIndexX;
+	int StartY = SpriteHeight * SpriteIndexY;
+	SDL_Rect SrcRect = { StartX, StartY, SpriteWidth, SpriteHeight };
+	SDL_Rect DestRect = { GetX() * TileSize, GetY() * TileSize, TileSize, TileSize };
+
+	SDL_RenderCopy(MyEngine::GetRenderer(), Texture, &SrcRect, &DestRect);
 }
 

@@ -26,6 +26,11 @@ void Actor::Init(int NewX, int NewY)
 
 	ZOrder = 0;
 	Color = SDL_Color();
+
+	ColorKey.r = 255;
+	ColorKey.g = 255;
+	ColorKey.b = 255;
+	ColorKey.a = 255;
 }
 
 
@@ -35,17 +40,16 @@ Actor::~Actor()
 	if (Surface)
 	{
 		SDL_FreeSurface(Surface);
+		Surface = nullptr;
 	}
 
 	if (Texture)
 	{
 		SDL_DestroyTexture(Texture);
+		Texture = nullptr;
 	}
 }
 
-void Actor::Tick()
-{
-}
 
 void Actor::Render()
 {
@@ -108,6 +112,9 @@ void Actor::LoadBMP(std::string ImageName)
 {
 	//RAM
 	Surface = SDL_LoadBMP(ImageName.c_str());
+	//ColorKey
+	SDL_SetColorKey(Surface, 1, SDL_MapRGB(Surface->format, ColorKey.r, ColorKey.g, ColorKey.b));
+
 	//GPU VRAM
 	Texture = SDL_CreateTextureFromSurface(MyEngine::GetRenderer(),
 		Surface);
